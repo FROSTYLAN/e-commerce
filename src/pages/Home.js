@@ -11,7 +11,7 @@ const Home = () => {
 
     useEffect(() => {
         dispatch(getProductsThunk())  ;
-    }, [])
+    }, [dispatch])
 
     console.log(products);
 
@@ -24,7 +24,7 @@ const Home = () => {
                         products.map(product => (
                             <li key={product.id}>
                                 <div className='product-card'>
-                                    <a>
+                                    <a href='https://www.youtube.com/watch?v=4pPMt6ZhCa4'>
                                         <figure>
                                             <img src={product.productImgs} alt="" />
                                         </figure>

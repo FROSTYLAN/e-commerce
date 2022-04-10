@@ -17,7 +17,7 @@
     display: block;
     width: 64px;
     height: 64px;
-    margin: 8px;
+    margin-left: 2px;
     border-radius: 50%;
     border: 6px solid ;
     border-color: #f85555 transparent #f85555 transparent;
