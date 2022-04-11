@@ -1,3 +1,6 @@
+.main-container {
+    margin: auto;
+}
 .products-list{
     list-style: none;
     display: flex;
@@ -122,6 +125,7 @@
 }
 .filter-drop-down .header span{
     font-size: 1rem;
+    font-weight: 600;
 }
 .filter-drop-down .header i {
     transition: all 1s;
@@ -172,15 +176,81 @@
     padding-left: 8px;
     list-style: none;
 }
-
+aside {
+    display: none;
+}
+.search-box .input {
+    display: flex;
+    margin-bottom: 15px;
+    max-width: 900px;
+}
+.search-box {
+    margin: 0 10px 30px;
+    position: relative;
+}
+.search-box .input input {
+    border: 1px solid var(--light-gray);
+    flex: 1 1;
+    font-size: .9rem;
+    padding: 5px 14px;
+}
+.search-box .input button {
+    background: var(--primary);
+    border: none;
+    font-size: 1.1rem;
+    height: 45px;
+    line-height: 1;
+    width: 45px;
+}
 @media (max-width: 300px) {
     .filters-modal.open{
         width: 280px;
+    }
+    .search-box .input input {
+        padding:  0 0 0 5px;
+    }
+    .search-box .input button {
+        padding: 0 5px; 
     }
 }
 @media (min-width: 576px) {
     .products-list li {
         width: 50%;
+    }
+    .main-container {
+        max-width: 579px;
+    }
+}
+@media (min-width: 768px) {
+    .main-container {
+        max-width: 721px;
+    }
+}
+@media (min-width: 992px) {
+    .search-box .filter-button {
+        display: none;
+    }
+    .search-box .filters-modal{
+        display: none;
+    }
+    .search-box {
+        display: block;
+        padding: 50px 20px 20px;
+    }
+    .home{
+        display: flex;
+    }
+    .home section {
+        flex: 1 1;
+        max-width: none;
+    }
+    .home aside {
+        display: block;
+        padding: 50px 20px 20px;
+        width: 300px;
+    }
+    .home aside .fixed {
+        position: fixed;
     }
 }
 @media (min-width: 1200px) {
@@ -191,5 +261,8 @@
 @media (min-width: 1300px) {
     .products-list li {
         padding: 30px;
+    }
+    .search-box .input {
+        margin: 0 auto;
     }
 }

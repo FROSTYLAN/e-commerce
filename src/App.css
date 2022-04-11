@@ -31,3 +31,17 @@ button {
 .focus {
   color: #f85555 !important;
 }
+::placeholder {
+  /* Chrome, Firefox, Opera, Safari 10.1+ */
+  /* Firefox */
+  color: #ababab;
+}
+
+:-moz-placeholder {
+  /* Mozilla Firefox 4 to 18 */
+  color: #ababab;
+}
+::-ms-input-placeholder {
+  /* Microsoft Edge */
+  color: #ababab;
+}
