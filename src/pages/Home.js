@@ -183,7 +183,8 @@ const Home = () => {
                                 <div className='product-card'>
                                     <a href='https://www.youtube.com/watch?v=4pPMt6ZhCa4'>
                                         <figure>
-                                            <img src={product.productImgs} alt="" />
+                                            <img src={product.productImgs[0]} alt="" />
+                                            <img src={product.productImgs[1]} alt="" className='over'/>
                                         </figure>
                                         <div className='info'>
                                             <span className='brand'>
