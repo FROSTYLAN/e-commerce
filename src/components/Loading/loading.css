@@ -1,9 +1,15 @@
+.bottom {
+    width: 100vw;
+    height: 100vh;
+    z-index: 2;
+    background-color: rgba(255,255,255, .5);
+    position: fixed;
+}
 .loading {
     position: fixed;
     bottom: calc(50% - 40px);
     right: calc(50% - 40px);
     z-index: 2;
-
 }
 
 .lds-dual-ring {

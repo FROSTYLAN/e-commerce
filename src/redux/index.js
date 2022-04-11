@@ -2,7 +2,8 @@ import { actions } from "./actions";
 
 const INITIAL_STATE = {
     products: [],
-    isLoading: false
+    isLoading: false,
+    categories: []
 }
 
 const reducer = (state = INITIAL_STATE, action) => {
@@ -20,6 +21,13 @@ const reducer = (state = INITIAL_STATE, action) => {
                 isLoading: action.payload
             }
 
+        case actions.setCategories:
+        return {
+            ...state,
+            categories: action.payload
+        }
+        
+            
         default:
             return state;
     }
