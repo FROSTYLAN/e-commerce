@@ -45,3 +45,12 @@ button {
   /* Microsoft Edge */
   color: #ababab;
 }
+.fa-cart-shopping:hover,
+.fa-shopping-cart:hover,
+.fa-magnifying-glass:hover,
+.fa-search:hover {
+  font-family: "Font Awesome 6 Free";
+  font-weight: 900;
+  color: #fff;
+  transition: .5s;
+}

@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
+import { Link } from 'react-router-dom';
 import { filterCategoryThunk, filterProductNameThunk, getCategoryThunk, getProductsThunk } from '../redux/actions';
 import '../styles/home/styles.css';
 
@@ -181,7 +182,7 @@ const Home = () => {
                         products.map(product => (
                             <li key={product.id}>
                                 <div className='product-card'>
-                                    <a href='https://www.youtube.com/watch?v=4pPMt6ZhCa4'>
+                                    <Link to={`/products/${product.id}`}>
                                         <figure>
                                             <img src={product.productImgs[0]} alt="" />
                                             <img src={product.productImgs[1]} alt="" className='over'/>
@@ -195,7 +196,7 @@ const Home = () => {
                                                 ${product.price}
                                             </span>
                                         </div>
-                                    </a>
+                                    </Link>
                                     <button>
                                         <i class="fa-solid fa-cart-shopping"></i>
                                     </button>
