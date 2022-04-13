@@ -1,0 +1,140 @@
+.content {
+    flex: 1 1;
+}
+.main-container {
+    margin: 0 auto;
+    padding: 13px 20px;
+}
+.images-gallery {
+    margin-bottom: 20px;
+    overflow: hidden;
+}
+.images-gallery .gallery {
+    position: relative;
+}
+.images-gallery .button-gallery.left {
+    left: 0;
+}
+
+.images-gallery .button-gallery {
+    align-items: center;
+    bottom: 0;
+    display: flex;
+    position: absolute;
+    top: 0;
+}
+.images-gallery .button-gallery.right {
+    right: 0;
+}
+.images-gallery .images-list {
+    display: flex;
+    height: 350px;
+    list-style: none;
+    transition: .5s ease-in-out;
+}
+.images-gallery .images-list li{
+    width: 300%;
+}
+.images-list .uno{
+    transform: (0%);
+}
+.images-gallery .images-list li {
+    padding: 0 50px;
+    width: 100%;
+}
+.images-gallery .images-list li img {
+    height: 100%;
+    object-fit: contain;
+}
+img {
+    width: 100%;
+}
+.images-gallery .button-gallery button {
+    background: var(--primary);
+    border-radius: 50%;
+    font-size: 1rem;
+    height: 40px;
+    line-height: 2.2;
+    width: 40px;
+    z-index: 9;
+}
+.button-gallery .fa-solid,
+.fas {
+    color: #fff;
+}
+.product-info .brand {
+    color: var(--gray);
+    font-size: 1.1rem;
+    margin-bottom: 10px;
+}
+.product-info h2 {
+    margin-bottom: 20px;
+    margin-left: 10px;
+}
+.product-info .product-data {
+    display: flex;
+    flex-direction: column;
+}
+.product-info .product-options .flex {
+    display: flex;
+    margin-bottom: 20px;
+}
+.product-info .product-options .price {
+    width: 50%;
+}
+.product-info .product-options .price span {
+    display: block;
+}
+
+.product-info .product-options .label {
+    color: var(--gray);
+    margin-bottom: 5px;
+}
+.product-info .product-options .price .amount {
+    font-size: 1.3rem;
+    font-weight: 600;
+    margin-left: 10px;
+}
+.product-info .product-options .quantity .value,
+.product-info .product-options .quantity button {
+    border: 1px solid var(--light-gray);
+}
+
+.product-info .product-options .quantity button {
+    background: none;
+    height: 30px;
+    line-height: 1.9;
+    width: 30px;
+}
+.product-info .product-options .quantity .value {
+    line-height: 1.7;
+    padding: 0 20px;
+}
+.product-info .product-options .quantity .value,
+.product-info .product-options .quantity button {
+    border: 1px solid var(--light-gray);
+}
+.product-info .add-cart-button {
+    background: var(--primary);
+    color: #fff;
+    font-size: 1.1rem;
+    margin-bottom: 50px;
+    padding: 15px;
+    width: 100%;
+}
+.product-info .add-cart-button i {
+    margin-left: 5px;
+}
+.product-info .product-description {
+    margin-bottom: 30px;
+}
+.product-detail .suggestions>strong {
+    color: var(--primary);
+    display: block;
+    font-size: 1.2rem;
+    margin-bottom: 20px;
+}
+.product-detail .suggestions ul li {
+    padding: 10px;
+    list-style: none;
+}
