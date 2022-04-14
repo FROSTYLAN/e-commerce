@@ -1,6 +1,6 @@
 import { HashRouter, Routes, Route } from 'react-router-dom';
 import { Home, Products, Purchases } from './pages';
-import { Loading } from './components';
+import { Footer, Loading, Navbar } from './components';
 import './App.css';
 import { useSelector } from 'react-redux';
 
@@ -14,6 +14,8 @@ function App() {
 
         { isLoading ?  <Loading /> : null }
 
+        <Navbar/>
+
         <Routes>
 
           <Route path='/' element={<Home />}/>
@@ -21,6 +23,9 @@ function App() {
           <Route path='/purchases' element={<Purchases />}/>
 
         </Routes>
+
+        <Footer />
+
       </HashRouter>
     </div>
   );

@@ -1,0 +1,81 @@
+.user-avatar {
+    width: 90px;
+    height: 90px;
+    border-radius: 50%;
+    margin: 0 auto 20px auto;
+    display: block;
+}
+
+.login-message {
+    color: #2fa8f8;
+    margin-bottom: 10px;
+    text-align: center;
+}
+
+.login .input-container {
+    margin-bottom: 20px;
+}
+
+.login .input-container input {
+    display: block;
+    width: 100%;
+    padding: 6px 8px;
+    margin-top: 4px;
+    border: 1px solid rgba(0, 0, 0, .2);
+    border-radius: 3px;
+}
+
+.login .submit-button {
+    background: var(--primary);
+    width: 100%;
+    padding: 9px;
+    color: #fff;
+    margin: 10px 0 25px;
+}
+
+.login .error-message {
+    color: #2fa8f8;
+    text-align: center;
+}
+
+.login .test-data {
+    background: #d8f5fd;
+    padding: 12px;
+    margin-bottom: 20px;
+    border-radius: 6px;
+}
+
+.login .test-data strong {
+    display: block;
+    text-align: center;
+    margin-bottom: 8px;
+}
+
+.login .test-data .field {
+    margin-bottom: 6px;
+}
+
+.login .test-data .field i {
+    margin-right: 13px;
+    font-size: 1.2rem;
+}
+
+.switch-forms {
+    font-size: .9rem;
+}
+
+.switch-forms button,
+.user-info button {
+    color: #2fa8f8;
+    background: transparent;
+    font-size: inherit;
+}
+
+.user-info {
+    text-align: center;
+}
+
+.user-info b {
+    display: block;
+    margin-bottom: 10px;
+}
