@@ -8,7 +8,8 @@ import axios from "axios"
 export const actions = {
     setProducts: "SET_PRODUCTS",
     setIsLoading: "SET_IS_LOADING",
-    setCategories: "SET_CATEGORIES"
+    setCategories: "SET_CATEGORIES",
+    setCart: "SET_CART"
 }
 
 export const setProducts = products => ({
@@ -23,6 +24,14 @@ export const setCategories = categories => ({
     type: actions.setCategories,
     payload: categories
 })
+export const setCart = cart => ({
+    type: actions.setCart,
+    payload: cart
+})
+
+const getConfig = () => ({
+    headers: { Authorization: `Bearer ${localStorage.getItem("token")}` }
+});
 
 export const getProductsThunk = () => {
     return dispatch => {
@@ -54,5 +63,35 @@ export const filterProductNameThunk = productName => {
         return axios.get(`https://ecommerce-api-react.herokuapp.com/api/v1/products?query=${productName}`)
             .then(res => dispatch(setProducts(res.data.data.products)))
             .finally(() => dispatch(setIsLoading(false)));
+    }
+}
+
+export const loginThunk = credentials => {
+    return dispatch => {
+        dispatch(setIsLoading(true));
+        return axios.post('https://ecommerce-api-react.herokuapp.com/api/v1/users/login', credentials)
+            .finally(() => dispatch(setIsLoading(false)));
+    }
+}
+
+export const addCartThunk = productCart => {
+    return dispatch => {
+        dispatch(setIsLoading(true));
+        return axios.post('https://ecommerce-api-react.herokuapp.com/api/v1/cart', productCart, getConfig())
+            .finally(() => dispatch(setIsLoading(false)));
+    }
+}
+
+export const getCartThunk = () => {
+    return dispatch => {
+        dispatch(setIsLoading(true));
+        return axios.get('https://ecommerce-api-react.herokuapp.com/api/v1/cart', getConfig())
+            .then(res => dispatch(setCart(res.data.data.cart.products)))
+            .catch(error => {
+                if(error.response.status === 404) {
+                    dispatch(setCart([]))
+                }
+            })
+            .finally(() => dispatch(setIsLoading(false)))
     }
 }

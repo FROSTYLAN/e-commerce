@@ -3,7 +3,7 @@ import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useParams } from 'react-router-dom';
 import { Link } from 'react-router-dom';
-import { getProductsThunk} from '../redux/actions';
+import { addCartThunk, getProductsThunk} from '../redux/actions';
 import "../styles/products.css"
 
 const Products = () => {
@@ -13,18 +13,22 @@ const Products = () => {
     const products = useSelector(state => state.products)
 
     const [ productsFiltered, setProductsFiltered ] = useState([]);
+    const [ quantity, setQuantity] = useState(0);
 
     useEffect(() => {
         dispatch(getProductsThunk())
     },[dispatch ])
     const productsFound = products.find(productsItem => productsItem.id === Number(id))
-    console.log(productsFound)
     
     useEffect(() => {
         axios.get(`https://ecommerce-api-react.herokuapp.com/api/v1/products/?category=${productsFound?.category.id}`)
             .then(res => setProductsFiltered(res.data.data.products))
             }, [productsFound?.category.id])
-    console.log(productsFiltered);
+
+    const addCart = () => {
+        const productCart = {id, quantity};
+        dispatch(addCartThunk(productCart));
+    }
 
     return (
         <div className='content'>
@@ -77,22 +81,22 @@ const Products = () => {
                                         <div className="quantity">
                                             <div className="label">Quantity</div>
                                             <div className="flex">
-                                                <button>
+                                                <button onClick={() => setQuantity(quantity - 1)}>
                                                     <i class="fa-thin fa-minus"></i>
                                                 </button>
                                                 <div className="value">
-                                                    1
+                                                    {quantity}
                                                 </div>
-                                                <button>
+                                                <button onClick={() => setQuantity(quantity + 1)}>
                                                     <i class="fa-thin fa-plus"></i>
                                                 </button>
                                             </div>
                                         </div>
                                     </div>
-                                    <div className="add-cart-button">
+                                    <button className="add-cart-button" onClick={addCart}>
                                         Add to cart
                                         <i class="fa-solid fa-cart-shopping"></i>
-                                    </div>
+                                    </button>
                                 </div>
                                 <p className="product-description">
                                     {productsFound?.description}

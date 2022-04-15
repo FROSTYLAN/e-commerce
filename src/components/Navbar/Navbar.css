@@ -75,6 +75,10 @@
     transform: scale(1);
 }
 
+.on {
+    color: #f85555;
+}
+
 
 @media (min-width: 568px) {
     .login-modal {
