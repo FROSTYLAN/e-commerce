@@ -196,10 +196,10 @@ const Home = () => {
                                                 ${product.price}
                                             </span>
                                         </div>
+                                        <button>
+                                            <i class="fa-solid fa-cart-shopping"></i>
+                                        </button>
                                     </Link>
-                                    <button>
-                                        <i class="fa-solid fa-cart-shopping"></i>
-                                    </button>
                                 </div>
                             </li>
                         ))
