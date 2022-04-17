@@ -1,5 +1,6 @@
 .main-container {
     margin: auto;
+    min-height: 80vh;
 }
 .products-list{
     list-style: none;

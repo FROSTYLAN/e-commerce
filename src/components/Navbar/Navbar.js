@@ -5,7 +5,7 @@ import "./Login.css"
 import "./Cart.css"
 import user from "./images/user.png"
 import { useDispatch, useSelector } from 'react-redux';
-import { getCartThunk, loginThunk } from '../../redux/actions';
+import { deleteCart, getCartThunk, loginThunk } from '../../redux/actions';
 
 const Navbar = () => {
 
@@ -15,11 +15,16 @@ const Navbar = () => {
     const [ email, setEmail ] = useState("");
     const [ password, setPassword ] = useState("");
     const [ loginError, setLoginError ] = useState("")
+    const [ signup, setSignup ] = useState(false)
+    const [ firstName, setFirstName ] = useState("");
+    const [ lastName, setLastName ] = useState("");
+    const [ isEmail, setIsEmail ] = useState("");
+    const [ isPassword, setIsPassword ] = useState("");
+    const [ phone, setPhone] = useState("");
     const dispatch = useDispatch();
     const navigate = useNavigate();
 
     const cart = useSelector(state => state.cart)
-    console.log(cart);
 
     const openCart = () => {
         setIsCart(!isCart);
@@ -41,6 +46,20 @@ const Navbar = () => {
         /* En el local storage solo se guardan string*/
     }
 
+    const isSign = e => {
+        e.preventDefault()
+        const userData = {firstName, lastName, email:{isEmail}, password:{isPassword}, phone, role: "admin"}
+        dispatch(loginThunk(userData))
+            .then(res => {
+                localStorage.setItem("token", res.data.data.token);
+                setLoginError("");
+                //setIsLoginOpen(false);
+            })
+            .catch(error => {
+                setLoginError(error.response.data.message);
+            })
+    }
+
     return (
         <div className='navbar'>
             <div className="fixed">
@@ -52,7 +71,9 @@ const Navbar = () => {
                         <i class="fa-solid fa-user" style={isLogin ? { color: "#f85555" } : {color:""}}></i>
                     </button>
                     <button className="icon">
-                        <i class="fa-solid fa-box-archive"></i>
+                        <Link to="/purchases">
+                            <i class="fa-solid fa-box-archive"></i>
+                        </Link>
                     </button>
                     <button className="icon" onClick={()=> openCart()}>
                         <i class="fa-solid fa-cart-arrow-down" style={isCart ? { color: "#f85555" } : { color: "" }}></i>
@@ -77,7 +98,9 @@ const Navbar = () => {
                                                     </div>
                                                 </div>
                                                 <div className="button-delete">
-                                                    <button><i class="fa-solid fa-trash"></i></button>
+                                                    <button onClick={dispatch(deleteCart(product.id))}>
+                                                        <i class="fa-solid fa-trash"></i>
+                                                    </button>
                                                 </div>
                                             </div>
                                             <div>
@@ -102,10 +125,42 @@ const Navbar = () => {
                 </div>
                 <div className={isLogin ? "login-modal minimalist-scrollbar open" : "login-modal minimalist-scrollbar"}>
                     <img src={user} className="user-avatar" alt=''/>
-                    {localStorage.getItem("token")? 
+                    {signup ?
+                        <>
+                            <form onSubmit={isSign} className="login">
+                                <div className="input-container">
+                                    <label htmlFor="email">Email</label>
+                                    <input type="text" id="email" name="email" onChange={e => setIsEmail(e.target.value)}/>
+                                </div>
+                                <div className="input-container">
+                                    <label htmlFor="firstName">First Name</label>
+                                    <input type="text" id="firstName" name="firstName" onChange={e => setFirstName(e.target.value)}/>
+                                </div>
+                                <div className="input-container">
+                                    <label htmlFor="lastName">Last Name</label>
+                                    <input type="text" id="lastName" name="lastName" onChange={e => setLastName(e.target.value)}/>
+                                </div>
+                                <div className="input-container">
+                                    <label htmlFor="password">Password</label>
+                                    <input type="password" id="password" name="password" onChange={e => setIsPassword(e.target.value)}/>
+                                </div>
+                                <div className="input-container">
+                                    <label htmlFor="phone">Phone (10 characters)</label>
+                                    <input type="tel" id="phone" name="phone" onChange={e => setPhone(e.target.value)}/>
+                                </div>
+                                <div className="error-message"></div>
+                                <button className='submit-button'>Sign up</button>
+                            </form>
+                            <div className="switch-forms">
+                                {signup ? "Have an account?" : "Don't have an account?"}
+                                <button type='button' onClick={() => setSignup(!signup)}>{signup ? "Log in" : "Sign up"}</button>
+                            </div>
+                        </>
+                        :
+                        localStorage.getItem("token")? 
                         <>
                             <div className="user-info">
-                                <b>John Doe</b>
+                                <b>Charles Castillo</b>
                                 <button onClick={() => localStorage.setItem("token", "")} type="button">Log out</button>
                             </div>
                         </>
@@ -116,11 +171,11 @@ const Navbar = () => {
                                     <strong>Test data</strong>
                                     <div className="field">
                                         <i class="fa-solid fa-envelope"></i>
-                                        john@gmail.com
+                                        frosty@gmail.com
                                     </div>
                                     <div className="field">
                                         <i class="fa-solid fa-lock"></i>
-                                        john1234
+                                        frosty1234
                                     </div>
                                 </div>
                                 <div className="input-container">
@@ -146,11 +201,11 @@ const Navbar = () => {
                                 <p className="login-message">
                                     {loginError}
                                 </p>
-                                <button className='submit-button'>Login</button>
+                                <button className='submit-button'>Log in</button>
                             </form>
                             <div className="switch-forms">
-                                Don't have an account?
-                                <button type='button'>Sign up</button>
+                                {signup ? "Have an account?" : "Don't have an account?"}
+                                <button type='button' onClick={() => setSignup(!signup)}>{signup ? "Log in" : "Sign up"}</button>
                             </div>
                         </>
                     }

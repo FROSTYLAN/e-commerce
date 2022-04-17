@@ -14,6 +14,18 @@ const Products = () => {
 
     const [ productsFiltered, setProductsFiltered ] = useState([]);
     const [ quantity, setQuantity] = useState(0);
+    const [ button, setButton ] = useState(0);
+
+    const changeImgRight = () => {
+        if (button < 2) {
+            setButton(button + 1);
+        }
+    }
+    const changeImgLeft = () => {
+        if (button > 0) {
+            setButton(button - 1)
+        }
+    }
 
     useEffect(() => {
         dispatch(getProductsThunk())
@@ -38,18 +50,21 @@ const Products = () => {
                         <figure className='images-gallery'>
                             <div className="gallery">
                                 <div className='button-gallery left'>
-                                    <button>
+                                    <button onClick={() => changeImgLeft()}>
                                         <i class="fa-solid fa-angle-left"></i>
                                     </button>
                                 </div>
                                 <div className='button-gallery right'>
-                                    <button>
+                                    <button onClick={() => changeImgRight()}>
                                         <i class="fa-solid fa-angle-right"></i>
                                     </button>
                                 </div>
                                 <ul 
                                     className='images-list' 
-                                    style={{ width: "300%", transform: "translateX(0%)"}}
+                                    style={
+                                            button === 0 ? { width: "300%", transform: "translateX(0%)" } 
+                                            : button === 1 ? { width: "300%", transform: "translateX(-33.3%)" } 
+                                            : button === 2 ? { width: "300%", transform: "translateX(-66.6%)" } : ""}
                                 >
                                     {
                                         productsFound?.productImgs.map(productImgs => (

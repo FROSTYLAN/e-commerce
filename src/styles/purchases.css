@@ -1,0 +1,111 @@
+.purchases h1 {
+    margin-bottom: 30px;
+}
+
+.purchases .purchase-item {
+    border: 1px solid var(--light-gray);
+    border-radius: 10px;
+    overflow: hidden;
+    margin-bottom: 20px;
+}
+
+.purchases .purchase-item .header {
+    border-bottom: 1px solid var(--light-gray);
+    padding: 10px;
+}
+
+.purchases .purchase-item .purchase-products-list {
+    padding: 30px 10px 10px 10px;
+}
+
+.purchases .purchase-item .purchase-products-list .product-item {
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+    height: 60px;
+    margin-bottom: 20px;
+}
+
+.purchases .purchase-item .purchase-products-list .product-item .image {
+    width: 20%;
+    height: 100%;
+    padding: 0 10px;
+}
+
+.purchases .purchase-item .purchase-products-list .product-item .image img {
+    object-fit: contain;
+    height: 100%;
+}
+
+.purchases .purchase-item .purchase-products-list .product-item .name {
+    font-size: .8rem;
+    width: 40%;
+}
+
+.purchases .purchase-item .purchase-products-list .product-item .quantity {
+    width: 60px;
+    padding: 0 10px;
+    width: 23%;
+}
+
+.purchases .purchase-item .purchase-products-list .product-item .quantity .box {
+    border: 1px solid var(--light-gray);
+    text-align: center;
+    max-width: 65px;
+    margin: 0 auto;
+}
+
+.purchases .purchase-item .purchase-products-list .product-item .price {
+    width: 17%;
+    text-align: center;
+}
+
+.purchases .no-purchases-message {
+    color: #a9a9a9;
+    margin-top: 40px;
+}
+
+.purchases .no-purchases-message a {
+    color: #6eadff;
+    text-decoration: none;
+}
+
+@media (min-width: 768px) {
+    .purchases .purchase-item .header {
+        padding: 20px 30px;
+    }
+
+    .purchases .purchase-item .purchase-products-list .product-item .name {
+        font-size: 1rem;
+    }
+
+    .purchases .purchase-item .purchase-products-list .product-item .price {
+        font-weight: 600;
+    }
+
+    .purchases .purchase-item .purchase-products-list .product-item .quantity .box {
+        padding: 10px;
+    }
+
+    .purchases {
+        padding: 40px 20px 80px;
+    }
+
+    .purchases .history {
+        margin-bottom: 30px;
+    }
+}
+
+@media (min-width: 992px) {
+    .purchases h1 {
+        margin-bottom: 50px;
+    }
+
+    .purchases .purchase-item .purchase-products-list .product-item {
+        margin-bottom: 30px;
+    }
+
+    .purchases.main-container {
+        max-width: 900px;
+    }
+}

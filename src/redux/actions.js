@@ -9,7 +9,8 @@ export const actions = {
     setProducts: "SET_PRODUCTS",
     setIsLoading: "SET_IS_LOADING",
     setCategories: "SET_CATEGORIES",
-    setCart: "SET_CART"
+    setCart: "SET_CART",
+    setPurchase: "SET_PURCHASE"
 }
 
 export const setProducts = products => ({
@@ -27,6 +28,10 @@ export const setCategories = categories => ({
 export const setCart = cart => ({
     type: actions.setCart,
     payload: cart
+})
+export const setPurchase = purchase => ({
+    type: actions.setPurchase,
+    payload: purchase
 })
 
 const getConfig = () => ({
@@ -73,6 +78,13 @@ export const loginThunk = credentials => {
             .finally(() => dispatch(setIsLoading(false)));
     }
 }
+export const signupThunk = userData => {
+    return dispatch => {
+        dispatch(setIsLoading(true));
+        return axios.post('https://ecommerce-api-react.herokuapp.com/api/v1/users', userData)
+            .finally(() => dispatch(setIsLoading(false)));
+    }
+}
 
 export const addCartThunk = productCart => {
     return dispatch => {
@@ -87,11 +99,29 @@ export const getCartThunk = () => {
         dispatch(setIsLoading(true));
         return axios.get('https://ecommerce-api-react.herokuapp.com/api/v1/cart', getConfig())
             .then(res => dispatch(setCart(res.data.data.cart.products)))
+            .finally(() => dispatch(setIsLoading(false)))
+    }
+}
+
+export const getPurchaseThunk = () => {
+    return dispatch => {
+        dispatch(setIsLoading(true));
+        return axios.get('https://ecommerce-api-react.herokuapp.com/api/v1/purchases', getConfig())
+            .then(res => dispatch(setPurchase(res.data.data)))
             .catch(error => {
-                if(error.response.status === 404) {
-                    dispatch(setCart([]))
+                if (error.response.status === 404) {
+                    dispatch(setPurchase([]))
                 }
             })
             .finally(() => dispatch(setIsLoading(false)))
+    }
+}
+
+export const deleteCart = id => {
+    return dispatch => {
+        dispatch(setIsLoading(true))
+        return axios.delete(`https://ecommerce-api-react.herokuapp.com/api/v1/cart/${id}`, getConfig())
+            .then(() => dispatch(getCartThunk()))
+            .finally(() => dispatch(setIsLoading(true)))
     }
 }
